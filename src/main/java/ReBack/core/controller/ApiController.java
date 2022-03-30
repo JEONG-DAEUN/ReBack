@@ -35,7 +35,7 @@ public class ApiController {
             userInfo.setName("member");
         }
 
-        Optional<Member> adminchk = UserInfoRepository.findById(userInfo.getId());
+        Optional<Member> adminchk = userInfoRepository.findById(userInfo.getId());
 
         if(adminchk.isPresent()==true) {
             return "no";
@@ -45,7 +45,7 @@ public class ApiController {
             //System.out.println("길이: "+userInfo.getAdminPw().length());
             // 비밀번호 재확인은 구현안함
             // https://youngjinmo.github.io/2021/05/passwordencoder/
-            UserInfoRepository.save(userInfo);
+            userInfoRepository.save(userInfo);
             return "ok";
         }
     }

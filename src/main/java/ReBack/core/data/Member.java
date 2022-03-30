@@ -13,18 +13,19 @@ import javax.persistence.*;
 @Entity
 @Table(name = "member")
 public class Member {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "member_code", length = 15)
-    public Long memberCode;
 
-    @Column(name = "member_id", length = 30)
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    @Column(name = "member_code", length = 15)
+//    public Long memberCode;
+
+    @Id
+    @Column(name = "member_id", length = 15)
     private String id;
 
     @Column(name = "member_name", length = 10)
-    private String name;
+    private String name1;
 
-    @Column(name = "member_password", length = 30)
+    @Column(name = "member_password", length = 60)
     private String password;
 
     @Column(name = "member_email", length = 50)
@@ -55,13 +56,13 @@ public class Member {
     private String type;
 
 
-    public Long getMemberCode() {
-        return memberCode;
-    }
-
-    public void setMemberCode(Long memberCode) {
-        this.memberCode = memberCode;
-    }
+//    public String getMemberCode() {
+//        return memberCode;
+//    }
+//
+//    public void setMemberCode(Long memberCode) {
+//        this.memberCode = memberCode;
+//    }
 
     public String getId() {
         return id;
@@ -72,11 +73,11 @@ public class Member {
     }
 
     public String getName() {
-        return name;
+        return name1;
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.name1 = name;
     }
 
     public String getPassword() {
@@ -158,5 +159,5 @@ public class Member {
     public void setType(String type) {
         this.type = type;
     }
-    
+
 }

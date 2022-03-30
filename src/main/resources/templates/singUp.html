@@ -9,20 +9,32 @@
           crossorigin="anonymous"></script>
 </head>
 <body>
-<label>아이디</label>
-<input type="text" name="id" id="id">
-<label>비밀번호</label>
-<input type="password" name="password" id="password">
-<label>이름</label>
-<input type="text" name="name" id="name">
-<button>회원가입</button>
+<fieldset>
+  <legend>필수입력사항</legend>
+  <div>
+    <label for="id">아이디:
+      <input id="id" name="id" type="text">
+    </label>
+  </div>
+  <div>
+    <label for="password">패스워드:
+      <input id="password" name="password" type="password">
+    </label>
+  </div>
+  <div>
+    <label for="name1">이름:
+      <input id="name1" name="name1" type="text">
+    </label>
+  </div>
+</fieldset>
+<button class="btn btn-lg btn-primary btn-block" id="rgAdm">회원가입</button>
 
 </body>
 <script>
   $('#rgAdm').on("click",function() {
     const ai = $('#id').val();
     const ap = $('#password').val();
-    const an = $("#name").val();
+    const an = $("#name1").val();
 
     if(ai == "" || ap == "") {
       alert("아이디와 비밀번호는 필수기재사항입니다.");
