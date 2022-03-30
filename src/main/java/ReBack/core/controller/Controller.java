@@ -8,4 +8,20 @@ public class Controller {
     public String index() {
         return "index";
     }
+
+    @GetMapping("/login")
+    public String login() {
+        return "login";
+    }
+    @GetMapping("/denied")
+    public String denied() {
+        return "denied";
+    }
+
+
+    @GetMapping("/singUp")
+    public String singUp() {
+
+        return "singUp";
+    }
 }

@@ -1,17 +1,42 @@
+#spring:
+#  output:
+#    ansi:
+#      enabled: always
+#
+#  datasource: # 여기가 DB 설정하는 곳
+#    url: jdbc:oracle:thin:@reback_high?TNS_ADMIN=./src/main/resources/wallet/Wallet_ReBack
+#    username: admin
+#    password: CapstoneTeam2
+#    driver-class-name: oracle.jdbc.OracleDriver
+#
+#  jpa:
+#    hibernate:
+#      ddl-auto: update # 애플리케이션 실행시점에 내가 가지고 있는 테이블 제거(drop) 후 다시 생성
+##    properties:
+##      hibernate:
+##        format_sql: true
+#
+#logging: # 로거를 통해 로그 출력
+#  level:
+#    org.hibernate.SQL: debug # 로거를 통해 hibernate 실행 SQL을 남긴다.
+#
+#server:
+#  port: 8086
+
 spring:
   output:
     ansi:
       enabled: always
 
   datasource: # 여기가 DB 설정하는 곳
-    url: jdbc:oracle:thin:@reback_high?TNS_ADMIN=./src/main/resources/wallet/Wallet_ReBack
-    username: admin
-    password: CapstoneTeam2
+    url: jdbc:oracle:thin:@10.30.3.95:1521:orcl
+    username: c##1701225
+    password: p1701225
     driver-class-name: oracle.jdbc.OracleDriver
 
   jpa:
     hibernate:
-      ddl-auto: update # 애플리케이션 실행시점에 내가 가지고 있는 테이블 제거(drop) 후 다시 생성
+      ddl-auto: update                                                                       # 애플리케이션 실행시점에 내가 가지고 있는 테이블 제거(drop) 후 다시 생성
 #    properties:
 #      hibernate:
 #        format_sql: true
