@@ -2,6 +2,7 @@ package ReBack.core.data;
 
 import lombok.*;
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 
 @Entity
@@ -45,7 +46,7 @@ public class Member {
     @Column(length=20)
     private MemberHowJoin memberHowJoin;
 
-    @Column(length=30,nullable=true)
+    @Column(length=30)
     private MemberWithdrawal memberWithdrawal;
 
     @Column(length=10, nullable = false)
@@ -53,4 +54,7 @@ public class Member {
 
     @Column(length=20, nullable = false)
     private  MemberType memberType;
+
+    @Column(nullable = false)
+    private LocalDateTime memberJoinDate;
 }

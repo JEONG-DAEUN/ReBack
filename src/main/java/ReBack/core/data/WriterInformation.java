@@ -3,7 +3,7 @@ package ReBack.core.data;
 import lombok.*;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.time.LocalDate;
 
 @Entity
 @ToString
@@ -19,14 +19,14 @@ public class WriterInformation {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "writer_information_seq_generator")
     private Long writerInformationCode;
 
-    @Column(length=200)
+    @Column(length=200, name="writer_lecture_place")
     private String writerLecturePlace;
 
     @Column
-    private Date availableStartTime;
+    private LocalDate availableStartTime;
 
     @Column
-    private Date availableFinishTime;
+    private LocalDate availableFinishTime;
 
     @Column(length=30)
     private String availableDay;
@@ -35,14 +35,14 @@ public class WriterInformation {
     private String trainingTopic;
 
     @Column
-    private boolean trainingStatus;
+    private int trainingStatus;
 
     @Column
-    private boolean feedbackStatus;
+    private int feedbackStatus;
 
     @ManyToOne
     @JoinColumn(name="member_code")
-    private Member memberCode;
+    private Member member;
 
 
 }
