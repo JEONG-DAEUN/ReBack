@@ -12,9 +12,9 @@ public class Controller {
     @GetMapping("/education")
     public String education() {return "education";}
 
-    @GetMapping("/share")
-    public String share() {return"share";}
+    @GetMapping("/fitedu")
+    public String fitedu() {return "fitedu";}
 
-    @GetMapping("/userlist")
-    public String userlist() {return"userlist";}
+    @GetMapping("/shareedu")
+    public String shareedu() {return "shareedu";}
 }
