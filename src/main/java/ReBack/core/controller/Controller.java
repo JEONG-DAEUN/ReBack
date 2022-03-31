@@ -8,4 +8,13 @@ public class Controller {
     public String index() {
         return "index";
     }
+
+    @GetMapping("/education")
+    public String education() {return "education";}
+
+    @GetMapping("/share")
+    public String share() {return"share";}
+
+    @GetMapping("/userlist")
+    public String userlist() {return"userlist";}
 }
