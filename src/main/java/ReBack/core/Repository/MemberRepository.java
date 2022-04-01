@@ -2,14 +2,12 @@ package ReBack.core.Repository;
 
 import ReBack.core.data.Member;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
-import java.util.Optional;
-
 @Repository
-public interface UserInfoRepository extends JpaRepository<Member, String> {
+public interface MemberRepository extends JpaRepository<Member, String> {
+    boolean existsByMemberId(String memberId);
+    boolean existsByEmail(String email);
 
 }
 

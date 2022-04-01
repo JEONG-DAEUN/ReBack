@@ -14,19 +14,20 @@ import javax.persistence.*;
 @Table(name = "member")
 public class Member {
 
-//    @GeneratedValue(strategy = GenerationType.IDENTITY)
-//    @Column(name = "member_code", length = 15)
-//    public Long memberCode;
+
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "member_code", length = 15)
+    public Long memberCode;
 
     @Id
     @Column(name = "member_id", length = 15)
-    private String id;
+    private String memberId;
 
     @Column(name = "member_name", length = 10)
     private String name1;
 
     @Column(name = "member_password", length = 60)
-    private String password;
+    private String memberPassword;
 
     @Column(name = "member_email", length = 50)
     private String email;
@@ -56,20 +57,20 @@ public class Member {
     private String type;
 
 
-//    public String getMemberCode() {
-//        return memberCode;
-//    }
-//
-//    public void setMemberCode(Long memberCode) {
-//        this.memberCode = memberCode;
-//    }
-
-    public String getId() {
-        return id;
+    public Long getMemberCode() {
+        return memberCode;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setMemberCode(Long memberCode) {
+        this.memberCode = memberCode;
+    }
+
+    public String getMemberId() {
+        return memberId;
+    }
+
+    public void setMemberId(String memberId) {
+        this.memberId = memberId;
     }
 
     public String getName() {
@@ -80,12 +81,12 @@ public class Member {
         this.name1 = name;
     }
 
-    public String getPassword() {
-        return password;
+    public String getMemberPassword() {
+        return memberPassword;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setMemberPassword(String memberPassword) {
+        this.memberPassword = memberPassword;
     }
 
     public String getEmail() {

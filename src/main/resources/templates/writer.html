@@ -12,13 +12,14 @@
 <fieldset>
   <legend>필수입력사항</legend>
   <div>
-    <label for="id">아이디:
-      <input id="id" name="id" type="text">
+
+    <label for="memberId">아이디:
+      <input id="memberId" name="memberId" type="text">
     </label>
-  </div>
+  </div>일반회원
   <div>
-    <label for="password">패스워드:
-      <input id="password" name="password" type="password">
+    <label for="memberPassword">패스워드:
+      <input id="memberPassword" name="memberPassword" type="password">
     </label>
   </div>
   <div>
@@ -26,23 +27,34 @@
       <input id="name1" name="name1" type="text">
     </label>
   </div>
+
+<!--  <select id="type" name="type">-->
+<!--    <option value="1">일반회원</option>-->
+<!--    <option value="2">작가회원</option>-->
+<!--    <option value="3">업체회원</option>-->
+<!--  </select>-->
+
 </fieldset>
 <button class="btn btn-lg btn-primary btn-block" id="rgAdm">회원가입</button>
 
 </body>
+
+
 <script>
   $('#rgAdm').on("click",function() {
-    const ai = $('#id').val();
-    const ap = $('#password').val();
-    const an = $("#name1").val();
+    const memberId = $('#memberId').val();
+    const memberPassword = $('#memberPassword').val();
+    const name1 = $("#name1").val();
+    var type = 2;
 
-    if(ai == "" || ap == "") {
+    if(memberId == "" || memberPassword == "") {
       alert("아이디와 비밀번호는 필수기재사항입니다.");
     } else {
       const json = JSON.stringify({
-        id: ai,
-        password: ap,
-        name: an
+        memberId: memberId,
+        memberPassword: memberPassword,
+        name1: name1,
+        type: type
     })
 
       $.ajax({
@@ -60,7 +72,7 @@
           else if (data == "ok"){
             alert("회원 가입 완료!.");
             alert("로그인 페이지로 이동합니다.");
-            window.location.href = '/index.html';
+            window.location.href = '/Login';
           }
         },
       })
