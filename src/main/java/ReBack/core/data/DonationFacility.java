@@ -35,5 +35,5 @@ public class DonationFacility {
 
     @ManyToOne
     @JoinColumn(name="financial_support_code")
-    private FinancialSupport financialSupport;
+    private FinancialSupport financialSupportCode;
 }

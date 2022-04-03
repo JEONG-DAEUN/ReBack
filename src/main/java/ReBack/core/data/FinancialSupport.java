@@ -30,5 +30,5 @@ public class FinancialSupport {
 
     @ManyToOne
     @JoinColumn(name="member_code")
-    private Member member;
+    private Member memberCode;
 }

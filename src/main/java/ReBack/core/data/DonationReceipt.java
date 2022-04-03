@@ -27,9 +27,9 @@ public class DonationReceipt {
 
     @ManyToOne
     @JoinColumn(name="clothing_sponsor_code")
-    private ClothingSponsor clothingSponsor;
+    private ClothingSponsor clothingSponsorCode;
 
     @ManyToOne
     @JoinColumn(name="sponsor_details_code")
-    private SponsorDetails sponsorDetails;
+    private SponsorDetails sponsorDetailsCode;
 }

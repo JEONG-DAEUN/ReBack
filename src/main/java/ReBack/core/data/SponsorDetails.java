@@ -20,5 +20,5 @@ public class SponsorDetails {
 
     @ManyToOne
     @JoinColumn(name="financial_support_code")
-    private FinancialSupport financialSupport;
+    private FinancialSupport financialSupportCode;
 }

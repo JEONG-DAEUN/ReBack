@@ -3,6 +3,7 @@ package ReBack.core.data;
 import lombok.*;
 
 import javax.persistence.*;
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
 @Entity
@@ -28,14 +29,14 @@ public class ClothingSponsor {
     @Column(nullable = false, name="clothing_sponsor_pickup_area", length = 20)
     private String pickupArea;
 
-    @Column(name="receipt_issue_status", length=1)
-    private int issueStatus;
+    @Column(name="receipt_issue_status", length=15)
+    private String issueStatus;
 
-    @Column(name="receipt_application_status", length=1)
-    private int appStatus;
+    @Column(name="receipt_application_status", length=15)
+    private String appStatus;
 
     @ManyToOne
     @JoinColumn(name="member_code")
-    private Member member;
+    private Member MemberCode;
 
 }
