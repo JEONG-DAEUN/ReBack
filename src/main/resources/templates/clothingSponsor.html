@@ -40,6 +40,9 @@
     </label>
 </div>
 <button type="submit" id="submit"> 신청 </button>
+<hr>
+<button th:onclick="|location.href='@{/donation}'|">메인으로</button>
+<button th:onclick="|window.history.back()|">뒤로가기</button>
 </body>
 <script th:inline="javascript">
     $(()=>{
@@ -72,6 +75,5 @@
             })
         })
     })
-
 </script>
 </html>

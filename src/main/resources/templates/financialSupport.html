@@ -9,26 +9,34 @@
 </head>
 <body>
 <div>
-    <label>의류량
-        <input type="number" placeholder="숫자만 입력해 주세요" id="amount" > kg
+    <label>후원 종류
+        <select id="financialType">
+            <option>
+                정기후원
+            </option>
+            <option>
+                일시후원
+            </option>
+        </select>
     </label>
 </div>
 <div>
-    <label>수거날짜
-        <input type="datetime-local" id="pickupDate">
+    <label>후원금액
+        <input type="number" placeholder="숫자만 입력해 주세요" id="financialAmount" > 원
     </label>
 </div>
 <div>
-    <label>수거지역
-        <input type="text" id="pickupArea">
+    <label>후원 선택 날짜
+        <input type="datetime-local" id="financialDate">
+        <input type="button" value="선택하기" onclick="alert('선택하신 날짜는 정기후원일 시 정기적으로 출금되는 날짜, 일시후원일 시 당일 출금되는 날짜입니다')">
     </label>
 </div>
 <div>
-    <input  type="hidden"  id="issueStatus" value="미발행">
+    <input  type="hidden"  id="statusIssue" value="미발행">
 </div>
 <div>
     <label>기부영수증신청여부
-        <select id="appStatus">
+        <select id="statusApp">
             <option>
                 신청
             </option>
@@ -40,24 +48,27 @@
     </label>
 </div>
 <button type="submit" id="submit"> 신청 </button>
+<hr>
+<button th:onclick="|location.href='@{/donation}'|">메인으로</button>
+<button th:onclick="|window.history.back()|">뒤로가기</button>
 </body>
 <script th:inline="javascript">
     $(()=>{
         $('#submit').on('click',()=>{
-            const amount= $('#amount').val();
-            const pickupDate= $('#pickupDate').val();
-            const pickupArea= $('#pickupArea').val();
-            const appStatus= $('#appStatus').val();
-            const issueStatus= $('#issueStatus').val();
+            const financialAmount= $('#financialAmount').val();
+            const financialDate= $('#financialDate').val();
+            const financialType= $('#financialType').val();
+            const statusApp= $('#statusApp').val();
+            const statusIssue= $('#statusIssue').val();
 
-            const path='/api/donation/clothingSponsor'
+            const path='/api/donation/FinancialSupport'
 
             const json = JSON.stringify({
-                amount,
-                pickupDate,
-                pickupArea,
-                appStatus,
-                issueStatus
+                financialAmount,
+                financialDate,
+                financialType,
+                statusApp,
+                statusIssue
             });
             alert(json)
             $.ajax({
@@ -68,7 +79,7 @@
             }).done((result)=>{
                 alert('ok')
             }).fail((error)=>{
-                alert(error)
+                alert(error+"error")
             })
         })
     })

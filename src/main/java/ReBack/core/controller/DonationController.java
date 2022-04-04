@@ -1,5 +1,6 @@
 package ReBack.core.controller;
 
+import ReBack.core.data.FinancialSupport;
 import ReBack.core.repository.ClothingSponsorRepository;
 import ReBack.core.repository.FinancialSupportRepository;
 import ReBack.core.repository.MemberRepository;
@@ -42,15 +43,8 @@ public class DonationController {
     public String applicationSituation(Model model){
         model.addAttribute("clothes" ,clothingSponsorRepository.findAll());
         model.addAttribute("member" ,memberRepository.findAll());
-//        model.addAttribute("financials" ,financialSupportRepository.findAll());
-
+        model.addAttribute("financials" ,financialSupportRepository.findAll());
         return "applicationSituation";
     }
 
-
-    @GetMapping("/donation/formUser/normal/dtNormal") // 양식
-    public String normalForm() {
-
-        return "applicationForm";
-    }
 }

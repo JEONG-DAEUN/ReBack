@@ -26,7 +26,13 @@ public class FinancialSupport {
     private int financialAmount;
 
     @Column(nullable = false, length=1, name="financial_support_type")
-    private int financialType;
+    private String financialType;
+
+    @Column(name="issue_receipt_status", length=15)
+    private String statusIssue;
+
+    @Column(name="receipt_request_status", length=15)
+    private String statusApp;
 
     @ManyToOne
     @JoinColumn(name="member_code")

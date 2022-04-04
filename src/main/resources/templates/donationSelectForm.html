@@ -9,6 +9,9 @@
 <body>
 <a th:href="@{/donation/clothingSponsor}"> 의류 후원 </a>
 <hr>
-<a th:href="@{/donation/financialSupport}"> 금전 후원 [미완성]</a>
+<a th:href="@{/donation/financialSupport}"> 금전 후원</a>
+<hr>
+<button th:onclick="|location.href='@{/donation}'|">메인으로</button>
+<button th:onclick="|window.history.back()|">뒤로가기</button>
 </body>
 </html>
