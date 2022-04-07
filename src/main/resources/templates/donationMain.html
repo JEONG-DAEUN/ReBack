@@ -9,30 +9,47 @@
 </head>
 <body>
 
-<a th:href="@{/donation/selectForm}"> 후원 신청 </a>
+<hr>
+
+<style>
+    summary {
+        cursor: pointer;
+    }
+
+    /* 삼각형 없애기
+    summary {
+      list-style: none;
+    }
+    summary::-webkit-details-marker {
+      display: none;
+    }
+    */
+</style>
+
+<!-- 처음부터 보이려면, <details open> -->
+<details>
+    <summary>후원 안내 신청서 & 후원 설명</summary>
+    <p>후원을 하고 싶으신 분은 아래 버튼을 통해 후원을 할 수 있습니다.</p>
+    <button th:onclick="|location.href='@{/donation/selectForm}'|"> 후원 신청 </button>
+    <br>
+    <br>
+</details>
+<br>
+<details>
+    <summary>후원금은 어디에 쓰이나요?</summary>
+    <p>어려운 사람들에게 온기를 나눠주는 용도로 쓰입니다.</p>
+    <br>
+</details>
+<br>
+<details>
+    <summary>후원 감사 프로그램</summary>
+    <p>후원 감사 프로그램에는 이런 종류가 있습니다.</p>
+    <br>
+</details>
 <hr>
 <a th:href="@{/donation/applicationSituation}">후원 현황[관리자]</a>
-
+<hr>
 <button th:onclick="|location.href='@{/donation}'|">메인으로</button>
 <button th:onclick="|window.history.back()|">뒤로가기</button>
-<hr>
-<a href="javascript:doDisplay();">> 내용보기</a><br/><br/>
-<div id="myDIV">
-    <h1>이거 고쳐야 됨</h1>
-    <p>1. 후원자가 되려면? 2. 후원금은 어디에 쓰이나?</p>
-</div>
-
-<script type="text/javascript">
-    var bDisplay = true;
-    function doDisplay(){
-        var con = document.getElementById("myDIV");
-        if(con.style.display=='none'){
-            con.style.display = 'block';
-        }else{
-            con.style.display = 'none';
-        }
-    }
-</script>
-
 </body>
 </html>
