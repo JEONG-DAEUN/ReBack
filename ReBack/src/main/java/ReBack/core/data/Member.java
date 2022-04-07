@@ -1,61 +1,64 @@
 package ReBack.core.data;
 
-
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-
+import lombok.*;
 import javax.persistence.*;
+import javax.transaction.Transactional;
+import java.time.LocalDateTime;
 
-@NoArgsConstructor
-@Getter
-@Setter
+
 @Entity
-@Table(name = "member")
+@ToString
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
+@Transactional
 public class Member {
-
-
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "member_code", length = 15)
-    public Long memberCode;
-
+    @SequenceGenerator(name = "member_seq_generator",
+            sequenceName = "member_seq",
+            initialValue = 1, allocationSize = 1)
     @Id
-    @Column(name = "member_id", length = 15)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "member_seq_generator")
+    private Long memberCode;
+
+
+    @Column(length=30, nullable = false)
     private String memberId;
 
-    @Column(name = "member_name", length = 10)
-    private String name1;
+    @Column(length=10, nullable = false)
+    private String memberName;
 
-    @Column(name = "member_password", length = 60)
+    @Column(length=30, nullable = false)
     private String memberPassword;
 
-    @Column(name = "member_email", length = 50)
-    private String email;
+    @Column(length=50, nullable = false)
+    private String memberEmail;
 
-    @Column(name = "member_phonenumber", length = 11)
-    private String phonenumber;
+    @Column(length=11, nullable = false)
+    private String memberPhoneNumber;
 
-    @Column(name = "member_postalCode", length = 10)
-    private String postalCode;
+    @Column(length=10, nullable = false)
+    private int memberPostalCode;
 
-    @Column(name = "member_address", length = 255)
-    private String address;
+    @Column(nullable = false)
+    private String memberAddress;
 
-    @Column(name = "member_point", length = 7)
-    private String point;
+    @Column(length=10)
+    private int memberPoint;
 
-    @Column(name = "member_howjoin", length = 1)
-    private String howjoin;
+    @Column(length=20)
+    private MemberHowJoin memberHowJoin;
 
-    @Column(name = "member_withdrawal", length = 30)
-    private String withdrawal;
+    @Column(length=30)
+    private MemberWithdrawal memberWithdrawal;
 
-    @Column(name = "mebmer_business_number", length = 10)
-    private String businessnumber;
+    @Column(length=10, nullable = false)
+    private int memberBusinessNumber;
 
-    @Column(name = "member_type", length = 1)
-    private String type;
+    @Column(length=20, nullable = false)
+    private  MemberType memberType;
 
+    @Column(nullable = false)
+    private LocalDateTime memberJoinDate;
 
     public Long getMemberCode() {
         return memberCode;
@@ -73,12 +76,12 @@ public class Member {
         this.memberId = memberId;
     }
 
-    public String getName() {
-        return name1;
+    public String getMemberName() {
+        return memberName;
     }
 
-    public void setName(String name) {
-        this.name1 = name;
+    public void setMemberName(String memberName) {
+        this.memberName = memberName;
     }
 
     public String getMemberPassword() {
@@ -89,76 +92,83 @@ public class Member {
         this.memberPassword = memberPassword;
     }
 
-    public String getEmail() {
-        return email;
+    public String getMemberEmail() {
+        return memberEmail;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setMemberEmail(String memberEmail) {
+        this.memberEmail = memberEmail;
     }
 
-    public String getPhonenumber() {
-        return phonenumber;
+    public String getMemberPhoneNumber() {
+        return memberPhoneNumber;
     }
 
-    public void setPhonenumber(String phonenumber) {
-        this.phonenumber = phonenumber;
+    public void setMemberPhoneNumber(String memberPhoneNumber) {
+        this.memberPhoneNumber = memberPhoneNumber;
     }
 
-    public String getPostalCode() {
-        return postalCode;
+    public int getMemberPostalCode() {
+        return memberPostalCode;
     }
 
-    public void setPostalCode(String postalCode) {
-        this.postalCode = postalCode;
+    public void setMemberPostalCode(int memberPostalCode) {
+        this.memberPostalCode = memberPostalCode;
     }
 
-    public String getAddress() {
-        return address;
+    public String getMemberAddress() {
+        return memberAddress;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
+    public void setMemberAddress(String memberAddress) {
+        this.memberAddress = memberAddress;
     }
 
-    public String getPoint() {
-        return point;
+    public int getMemberPoint() {
+        return memberPoint;
     }
 
-    public void setPoint(String point) {
-        this.point = point;
+    public void setMemberPoint(int memberPoint) {
+        this.memberPoint = memberPoint;
     }
 
-    public String getHowjoin() {
-        return howjoin;
+    public MemberHowJoin getMemberHowJoin() {
+        return memberHowJoin;
     }
 
-    public void setHowjoin(String howjoin) {
-        this.howjoin = howjoin;
+    public void setMemberHowJoin(MemberHowJoin memberHowJoin) {
+        this.memberHowJoin = memberHowJoin;
     }
 
-    public String getWithdrawal() {
-        return withdrawal;
+    public MemberWithdrawal getMemberWithdrawal() {
+        return memberWithdrawal;
     }
 
-    public void setWithdrawal(String withdrawal) {
-        this.withdrawal = withdrawal;
+    public void setMemberWithdrawal(MemberWithdrawal memberWithdrawal) {
+        this.memberWithdrawal = memberWithdrawal;
     }
 
-    public String getBusinessnumber() {
-        return businessnumber;
+    public int getMemberBusinessNumber() {
+        return memberBusinessNumber;
     }
 
-    public void setBusinessnumber(String businessnumber) {
-        this.businessnumber = businessnumber;
+    public void setMemberBusinessNumber(int memberBusinessNumber) {
+        this.memberBusinessNumber = memberBusinessNumber;
     }
 
-    public String getType() {
-        return type;
+    public MemberType getMemberType() {
+        return memberType;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setMemberType(MemberType memberType) {
+        this.memberType = memberType;
     }
 
+    public LocalDateTime getMemberJoinDate() {
+        return memberJoinDate;
+    }
+
+    public void setMemberJoinDate(LocalDateTime memberJoinDate) {
+        this.memberJoinDate = memberJoinDate;
+    }
 }

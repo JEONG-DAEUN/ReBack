@@ -24,11 +24,11 @@ public class Controller {
 
         return "writer";
     }
-//    @PostMapping("/singUp")
-//    public String sing123(Model model) {
-//    model.addAttribute(model)
-//        return "singUp";
-//    }
+
+    @GetMapping("/pono")
+    public String pono() {
+        return "pono";
+    }
 
     @GetMapping("/tjsxpr")
     public String tjsxpr() {
