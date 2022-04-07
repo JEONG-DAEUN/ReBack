@@ -1,107 +1,109 @@
 package ReBack.core.controller;
 
-import ReBack.core.repository.MemberRepository;
+import ReBack.core.data.Product;
+import ReBack.core.repository.CategoryRepository;
+import ReBack.core.repository.MaterialRepository;
+import ReBack.core.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
-
+import javax.servlet.http.HttpServletRequest;
+import java.io.File;
+import java.io.IOException;
 import java.util.Optional;
-
-import ReBack.core.data.Member;
 
 @RestController
 @RequestMapping("/api")
 public class ApiController {
 
     @Autowired
-    private MemberRepository memberRepository;
-
+    ProductRepository productRepository;
     @Autowired
-    private PasswordEncoder passwordEncoder;
+    CategoryRepository categoryRepository;
+    @Autowired
+    MaterialRepository materialRepository;
 
 
-
-    @PostMapping("/signUp1")
-    public String insertUser1(@RequestBody Member member) {
-        if (member.getMemberId() == "" || member.getMemberId() == null) {
-//                == null && member.getEmail() == "" || member.getEmail() == null) {
-            member.setMemberId("member");
-//            member.setEmail("member");
-        }
-
-        Optional<Member> idCheck = memberRepository.findById(member.getMemberId());
-//       Optional<Member> emailCheck = memberRepository.findById(member.getEmail());
-
-        if (idCheck.isPresent() == true) {
-//                && idCheck.isPresent() ==true ) {
-            return "no";
-        } else {
-//           String inputEmail = member.getEmail();
-//           member.setEmail(inputEmail);
-            String encodedPassword = passwordEncoder.encode(member.getMemberPassword());
-            member.setMemberPassword(encodedPassword);
-            //System.out.println("길이: "+userInfo.getAdminPw().length());
-            // 비밀번호 재확인은 구현안함
-            // https://youngjinmo.github.io/2021/05/passwordencoder/
-            memberRepository.save(member);
-            return "ok";
-        }
-//
-    }
-
-    @PostMapping("/signUp")
-    public String insertUser(@RequestBody Member member) {
-        String inputId = member.getMemberId();
-        if (inputId == "" || inputId == null) {
-            return "ng";
-        }
-        Optional<Member> idCheck = memberRepository.findByMemberId(inputId);
-        if (idCheck.isPresent() == true) {
-            return "no";
-        } else {
-            return "ok";
-        }
-    }
-
-    @PostMapping("/login")
-    public String chkUser(@RequestBody Member member) {
-        String inputId = member.getMemberId();
-        Optional<Member> adminchk = memberRepository.findById(inputId);
-        Member adminCheck = adminchk.get();
-        //System.out.println(adminCheck.getAdminId());
-
-        // 디비에 있는 비밀번호
-        //System.out.println(adminCheck.getAdminPw());
-
-        if (adminCheck.getMemberId().equals(inputId) &&
-                passwordEncoder.matches(member.getMemberPassword(), adminCheck.getMemberPassword())) {
-            // 입력한 비밀번호, 디비 비밀번호 비교
-            return "ok";
-        } else {
-            System.out.println("비밀번호가 일치하지 않습니다.");
-            return "no";
-        }
-    }
-
-
-//    @GetMapping("/check/sendSMS")
-//    public @ResponseBody
-//    String sendSMS(String memberPhoneNumber) {
-//
-//        Member rand  = new Member();
-//        String numStr = "";
-//        for(int i=0; i<4; i++) {
-//            String ran = Integer.toString(rand.nextInt(10));
-//            numStr+=ran;
-//        }
-//
-//        System.out.println("수신자 번호 : " + memberPhoneNumber);
-//        System.out.println("인증번호 : " + numStr);
-//
-//        certificationService.certifiedPhoneNumber(memberPhoneNumber,numStr);
-//        return numStr;
+    //    @GetMapping("/productPage")
+//    public Page<Product> getAllProductWithPageByQueryMethod(Model model ,@RequestParam("page") Integer page, @RequestParam("size") Integer size) {
+//        model.addAttribute("productCode", productRepository.findAll());
+//        PageRequest pageRequest = PageRequest.of(page, size);
+//        return productRepository.findByProductCode(Integer.parseInt("productCode"), pageRequest);
 //    }
+    @PutMapping("/product/update")
+    public void productUpdate(@RequestBody Product product) {
+        System.out.println("수정api");
+        Optional<Product> searchProduct = productRepository.findById(product.getProductCode());
 
+        if (searchProduct.isPresent()) {
+//            product.setProductFilePath(searchProduct.get().getProductFilePath());
+            product.setProductFileName(searchProduct.get().getProductFileName());
+        }
+        productRepository.save(product);
 
+    }
+
+    @DeleteMapping("/product/delete")
+    public void productDelete(@RequestBody Product product) {
+        Optional<Product> deleteProduct = productRepository.findById(product.getProductCode());
+
+        if (deleteProduct.isPresent()) {
+            System.out.println(deleteProduct);
+            productRepository.delete(product);
+        }
+
+    }
+
+    @PostMapping("/product/add")
+    public void productAdd(@Validated @RequestPart(value = "key") Product product,
+                                     @RequestPart(value = "file") MultipartFile file,
+                                     HttpServletRequest request) throws Exception {
+        String fileName;
+        if (file == null) {
+            fileName = "";
+        } else {
+            fileName = file.getOriginalFilename(); //
+            String filepath = request.getSession().getServletContext().getRealPath("") + "file\\" ; // webapps/file
+            System.out.println("filepath  :    " + filepath);
+            try {
+
+            file.transferTo(new File(filepath+fileName));
+            System.out.println("업로드 성공");
+            product.setProductFileName(fileName);
+            product.setProductFilePath("/file/" + fileName);
+
+            } catch (IllegalStateException | IOException e) {
+            System.out.println("실패");
+            e.printStackTrace();
+        }
+        }
+
+        productRepository.save(product);
+//        return new ResponseEntity<>(HttpStatus.OK);
+    }
 }
+//System.out.println(file + "file");
+//        System.out.println(request);
+//        System.out.println(product);
+//        String path =  request.getSession().getServletContext().getRealPath("") + + "\\src\\main\\resources\\static\\file";
+//        System.out.println(path);
+//
+//        String fileName = file.getOriginalFilename();
+//
+//        System.out.println(fileName);
+//
+//
+//        File saveFile = new File(path, fileName);
+//
+//        file.transferTo(saveFile);
+//
+//        product.setProductFileName(fileName);
+//        product.setProductFilePath("file/" + fileName);
+//
+//        System.out.println(product);
+
+//String path = System.getProperty("user.dir") + "\\src\\main\\resources\\static\\file" ;
