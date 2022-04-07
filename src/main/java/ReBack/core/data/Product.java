@@ -1,5 +1,6 @@
 package ReBack.core.data;
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import lombok.*;
 
 import javax.persistence.*;
@@ -7,9 +8,11 @@ import javax.persistence.*;
 @Entity
 @ToString
 @Getter
+@Setter
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@JsonAutoDetect
 public class Product {
     @SequenceGenerator(name = "product_seq_generator",
             sequenceName = "product_seq",
@@ -18,15 +21,18 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "product_seq_generator")
     private Long productCode;
 
-    @Column(nullable = false, name="product_information")
+    @Column(nullable = false, name = "product_information")
     private String productInfo;
 
-    @Column(nullable = false, length=50)
+    @Column(nullable = false, length = 50)
     private String productName;
 
-    @Column(nullable = false, length=8)
+    @Column(nullable = false, length = 8)
     private int productPrice;
-    
+
+    @Column(nullable = false, length = 8)
+    private int productStock;
+
     @Column(nullable = false)
     private String productFileName;
 
@@ -34,15 +40,17 @@ public class Product {
     private String productFilePath;
 
     @ManyToOne
-    @JoinColumn(name="member_code")
-    private Member member;
+    @JoinColumn(name = "member_code")
+    private Member memberCode;
 
     @ManyToOne
-    @JoinColumn(name="category_code")
-    private Category category;
+    @JoinColumn(name = "category_code")
+    private Category categoryCode;
 
     @ManyToOne
-    @JoinColumn(name="material_code")
-    private Material material;
+    @JoinColumn(name = "material_code")
+    private Material materialCode;
+
+
 
 }

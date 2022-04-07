@@ -3,6 +3,8 @@ package ReBack.core.data;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @ToString
@@ -21,5 +23,8 @@ public class Material {
     @Column(length=30, nullable = false)
     private String materialName;
 
+//    @OneToMany(fetch=FetchType.EAGER, cascade = CascadeType.ALL) // (1)
+//    @JoinColumn(name="material_code")
+//    private List<Product> products = new ArrayList<>();
 }
 
