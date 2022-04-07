@@ -60,12 +60,6 @@ public class Member {
     @Column(nullable = false)
     private LocalDateTime memberJoinDate;
 
-    public void setMemberId(String member) {
-    }
-
-    public void setMemberPassword(String encodedPassword) {
-    }
-
 //    @OneToMany(fetch=FetchType.EAGER, cascade = CascadeType.ALL) // (1)
 //    @JoinColumn(name="member_code")
 //    private List<Product> products = new ArrayList<>();
