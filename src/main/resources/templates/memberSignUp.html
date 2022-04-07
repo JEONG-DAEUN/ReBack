@@ -22,7 +22,7 @@
             <!--            <span class="point successNameChk">아이디는 6자이상 입력해 주세요.</span>-->
 
         </label>
-        <button class="btn btn-lg btn-primary btn-block" id="rgAdm1">중복확인</button>
+        <button class="btn btn-lg btn-primary btn-block" id="idCheck">중복확인</button>
         <div>
             <label for="memberPassword">패스워드:
                 <input id="memberPassword" name="memberPassword" type="password"
@@ -31,8 +31,8 @@
             </label>
         </div>
         <div>
-            <label for="cmemberPassword">패스워드 확인:
-                <input id="cmemberPassword" name="cmemberPassword" type="password"
+            <label for="passwordCheck">패스워드 확인:
+                <input id="passwordCheck" name="memberPassword" type="password"
                        placeholder="동일하게 입력해 주세요." required maxlength="8" autocomplete="off">
                 <p id="ng" style="color:red;"></p>
                 <p id="ok" style="color:green;"></p>
@@ -41,13 +41,13 @@
         </div>
 
         <div>
-            <label for="name1">이름:
-                <input id="name1" name="name1" type="text">
+            <label for="memberName">이름:
+                <input id="memberName" name="memberName" type="text">
             </label>
         </div>
         <div>
-            <label for="email">email:
-                <input id="email" name="email" type="text">
+            <label for="memberEmail">email:
+                <input id="memberEmail" name="memberEmail" type="email">
             </label>
         </div>
         <div>
@@ -64,67 +64,31 @@
         </div>
 
         <div>
-            <label for="postalCode">우편 번호:
-                <input id="postalCode" name="postalCode" type="text">
+            <label for="memberPostalCode">우편 번호:
+                <input id="memberPostalCode" name="memberPostalCode" type="text">
             </label>
         </div>
         <div>
-            <label for="address">회원 주소:
-                <input id="address" name="address" type="text">
+            <label for="memberAddress">회원 주소:
+                <input id="memberAddress" name="memberAddress" type="text">
             </label>
         </div>
+    </div>
+
+    <div style="display:none"><input type="datetime-local" id='memberJoinDate'/></div>
+
 
 </fieldset>
-<button class="btn btn-lg btn-primary btn-block" id="rgAdm">회원가입</button>
+
+<button class="btn btn-lg btn-primary btn-block" id="singUp">회원가입</button>
 
 </body>
 
 
 <script>
 
-
-    var code2 = "";
-    $("#phoneChk").click(function () {
-        alert("인증번호 발송이 완료되었습니다.\n휴대폰에서 인증번호 확인을 해주십시오.");
-        var phone = $("#memberPhoneNumber").val();
-        $.ajax({
-            type: "GET", url: "phoneCheck?phone=" + memberPhoneNumber, cache: false, success: function (data) {
-                if (data == "error") {
-                    alert("휴대폰 번호가 올바르지 않습니다.")
-                    $(".successPhoneChk").text("유효한 번호를 입력해주세요.");
-                    $(".successPhoneChk").css("color", "red");
-                    $("#memberPhoneNumber").attr("autofocus", true);
-                } else {
-                    $("#phone2").attr("disabled", false);
-                    $("#phoneChk2").css("display", "inline-block");
-                    $(".successPhoneChk").text("인증번호를 입력한 뒤 본인인증을 눌러주십시오.");
-                    $(".successPhoneChk").css("color", "green");
-                    $("#memberPhoneNumber").attr("readonly", true);
-                    code2 = data;
-                }
-            }
-        });
-    });
-
-
-    //휴대폰 인증번호 대조
-    $("#phoneChk2").click(function () {
-        if ($("#phone2").val() == code2) {
-            $(".successPhoneChk").text("인증번호가 일치합니다.");
-            $(".successPhoneChk").css("color", "green");
-            $("#phoneDoubleChk").val("true");
-            $("#phone2").attr("disabled", true);
-        } else {
-            $(".successPhoneChk").text("인증번호가 일치하지 않습니다. 확인해주시기 바랍니다.");
-            $(".successPhoneChk").css("color", "red");
-            $("#phoneDoubleChk").val("false");
-            $(this).attr("autofocus", true);
-        }
-    });
-
-
     // 아이디 중복 확인
-    $('#rgAdm1').click(function () {
+    $('#idCheck').click(function () {
         const memberId = $('#memberId').val();
         const json = JSON.stringify({
             memberId,
@@ -132,7 +96,7 @@
         console.log("????????" + json)
 
         $.ajax({
-            url: '/api/signUp',
+            url: '/api/member/idCheck',
             type: 'POST',
             dataType: 'text',
             contentType: "application/json",
@@ -163,13 +127,13 @@
 
     //비밀번호 확인
     $(function () {
-        $('#cmemberPassword').blur(function () {
-            if ($('#memberPassword').val() != $('#cmemberPassword').val()) {
-                if ($('#cmemberPassword').val() != '') {
+        $('#passwordCheck').blur(function () {
+            if ($('#memberPassword').val() != $('#passwordCheck').val()) {
+                if ($('#passwordCheck').val() != '') {
                     document.getElementById('ng').innerHTML = "동일한 비밀번호를 입력해 주세요"
                     // alert("비밀번호가 일치하지 않습니다.");
-                    $('#cmemberPassword').val('');
-                    $('#cmemberPassword').focus();
+                    $('#passwordCheck').val('');
+                    $('#passwordCheck').focus();
                 }
             } else {
                 document.getElementById('ng').innerHTML = ""
@@ -179,16 +143,16 @@
     });
 
     //데이터 전송
-    $('#rgAdm').on("click", function () {
+    $('#singUp').on("click", function () {
         const memberId = $('#memberId').val();
         const memberPassword = $('#memberPassword').val();
-        const name1 = $("#name1").val();
-
-        const email = $("#email").val();
-        const phonenumber = $("#phonenumber").val();
-        const address = $("#address").val();
-        const postalCode = $("#postalCode").val();
-        var type = 0;
+        const memberName = $("#memberName").val();
+        const memberJoinDate = document.getElementById('memberJoinDate').value= new Date().toISOString().slice(0, -1);
+        const memberEmail = $("#memberEmail").val();
+        const memberPhoneNumber = $("#memberPhoneNumber").val();
+        const memberAddress = $("#memberAddress").val();
+        const memberPostalCode = $("#memberPostalCode").val();
+        const memberType = 0;
 
         if (memberId == "" || memberPassword == "") {
             alert("아이디와 비밀번호는 필수기재사항입니다.");
@@ -196,25 +160,25 @@
             const json = JSON.stringify({
                 memberId: memberId,
                 memberPassword: memberPassword,
-                name1: name1,
-                type: type,
-                email: email,
-                phonenumber: phonenumber,
-                address: address,
-                postalCode: postalCode
-
+                memberName: memberName,
+                memberType: memberType,
+                memberEmail: memberEmail,
+                memberPhoneNumber: memberPhoneNumber,
+                memberAddress: memberAddress,
+                memberPostalCode: memberPostalCode,
+                memberJoinDate:memberJoinDate
 
             })
 
             $.ajax({
-                url: '/api/signUp1',
+                url: '/api/member/singUp',
                 type: 'POST',
                 dataType: 'text',
                 contentType: "application/json; charset=utf-8",
                 data: json,
                 success: function (data) {
                     console.log(data)
-                    window.location.href = '/Login';
+                    window.location.href = '/member/login';
                 },
             })
 

@@ -10,6 +10,7 @@ import java.util.List;
 @Entity
 @ToString
 @Getter
+@Setter
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
@@ -59,6 +60,8 @@ public class Member {
 
     @Column(nullable = false)
     private LocalDateTime memberJoinDate;
+
+
 
 //    @OneToMany(fetch=FetchType.EAGER, cascade = CascadeType.ALL) // (1)
 //    @JoinColumn(name="member_code")

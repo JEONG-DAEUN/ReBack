@@ -17,7 +17,7 @@ import java.io.IOException;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/product")
 public class ProductApiController {
 
     @Autowired
@@ -34,7 +34,7 @@ public class ProductApiController {
 //        PageRequest pageRequest = PageRequest.of(page, size);
 //        return productRepository.findByProductCode(Integer.parseInt("productCode"), pageRequest);
 //    }
-    @PutMapping("/product/update")
+    @PutMapping("/update")
     public void productUpdate(@RequestBody Product product) {
         System.out.println("수정api");
         Optional<Product> searchProduct = productRepository.findById(product.getProductCode());
@@ -47,7 +47,7 @@ public class ProductApiController {
 
     }
 
-    @DeleteMapping("/product/delete")
+    @DeleteMapping("/delete")
     public void productDelete(@RequestBody Product product) {
         Optional<Product> deleteProduct = productRepository.findById(product.getProductCode());
 
@@ -58,7 +58,7 @@ public class ProductApiController {
 
     }
 
-    @PostMapping("/product/add")
+    @PostMapping("/add")
     public void productAdd(@Validated @RequestPart(value = "key") Product product,
                                      @RequestPart(value = "file") MultipartFile file,
                                      HttpServletRequest request) throws Exception {
