@@ -61,17 +61,8 @@ public class ApiController {
 //       Optional<Member> emailCheck = memberRepository.findById(member.getEmail());
 
         if (idCheck.isPresent() == true ){
-//                && idCheck.isPresent() ==true ) {
             return "no";
         } else {
-//           String inputEmail = member.getEmail();
-//           member.setEmail(inputEmail);
-//            String encodedPassword = passwordEncoder.encode(member.getMemberPassword());
-//            member.setMemberPassword(encodedPassword);
-            //System.out.println("길이: "+userInfo.getAdminPw().length());
-            // 비밀번호 재확인은 구현안함
-            // https://youngjinmo.github.io/2021/05/passwordencoder/
-//            memberRepository.save(member);
             return "ok";
         }
 //
