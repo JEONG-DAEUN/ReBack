@@ -23,10 +23,10 @@ public class WriterInformation {
     private String writerLecturePlace;
 
     @Column
-    private LocalDate availableStartTime;
+    private int availableStartTime;
 
     @Column
-    private LocalDate availableFinishTime;
+    private int availableFinishTime;
 
     @Column(length=30)
     private String availableDay;

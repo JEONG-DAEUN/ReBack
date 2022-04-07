@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>addpost</title>
+<!--    메인 화면에서 디자인 등록 클릭 시 이동하는 디자인 등록 화면-->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+            integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+</head>
+<body>
+<h2>디자인 등록</h2>
+<form th:action="@{/api/design/addpost}" enctype="multipart/form-data" method="post">
+<!--     enctype="multipart/form-data"-->
+    <label>이름</label><input type="text" placeholder="제목" name="designName"><br>
+    <label>디자인 설명</label><br><textarea cols="50" rows="10" placeholder="디자인 설명" name="designEx"></textarea><br>
+    <label>이미지<input type="file" name="designImagePath"  accept="image/jpeg"></label><br>
+    <label>카테고리<select name="category">
+        <option value=1>가방</option>
+        <option value=2>의류</option>
+        <option value=3>지갑</option>
+    </select></label><br>
+    <label>소재<select name="material">
+        <option value=1>가죽</option>
+        <option value=2>천</option>
+    </select></label><br>
+    <label>공개여부<select name="designState">
+        <option value=1>공개</option>
+        <option value=0>비공개</option>
+    </select></label><br>
+<!--    /**-->
+<!--    * TODO 소재 select 타입으로 작성하기-->
+<!--    */-->
+    <input type="submit" id="addShare" value="공유 게시판에 공유"></input>
+    <input type="submit" id="addMypage" value="마이페이지에 저장"></input>
+</form>
+
+<!--스크립트-->
+<script th:inline="javascript">
+    // $('#addpost').click((event) {
+    //     var formData = new FormData();
+    //     var inputFile = $("input[type='file']");
+    //     var files = inputFile[0].files;
+    //     for(var i=0; i<files.length; i++) {
+    //         console.log(files[i]);
+    //         formData.append("uploadFiles", files[i]);
+    //     }
+    // });
+</script>
+</body>
+</html>

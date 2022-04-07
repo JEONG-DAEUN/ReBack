@@ -31,6 +31,9 @@ public class Consulting {
     @Column(nullable = false, length = 50)
     private String consultingType;
 
+    @Column(nullable = false, length=100)
+    private String consultingPlace;
+
     @ManyToOne
     @JoinColumn(name="member_code1")
     private Member member1;
@@ -38,4 +41,8 @@ public class Consulting {
     @ManyToOne
     @JoinColumn(name="member_code2")
     private Member member2;
+
+    @ManyToOne
+    @JoinColumn(name="design_code")
+    private Design design;
 }

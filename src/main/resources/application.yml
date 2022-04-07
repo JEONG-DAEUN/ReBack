@@ -2,12 +2,21 @@ spring:
   output:
     ansi:
       enabled: always
+  servlet:
+    multipart:
+      location: C:/Temp
+      max-file-size: 100MB
+      max-request-size: 100MB
 
   datasource: # 여기가 DB 설정하는 곳
-    url: jdbc:oracle:thin:@reback_high?TNS_ADMIN=./src/main/resources/wallet/Wallet_ReBack
-    username: admin
-    password: CapstoneTeam2
-    driver-class-name: oracle.jdbc.OracleDriver
+#    url: jdbc:oracle:thin/:@reback_high?TNS_ADMIN=./src/main/resources/wallet/Wallet_ReBack
+#    username: admin
+#    password: CapstoneTeam2
+#    driver-class-name: oracle.jdbc.OracleDriver
+    url: jdbc:h2:tcp://localhost/~/capstone
+    username: sa
+    password:
+    driver-class-name: org.h2.Driver
 
   jpa:
     hibernate:
@@ -17,6 +26,7 @@ spring:
         show_sql: true
         format_sql: true
         user_sql_comments: true
+  open-in-view: false
 
 logging: # 로거를 통해 로그 출력
   level:

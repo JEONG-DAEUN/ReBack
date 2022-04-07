@@ -1,6 +1,8 @@
 package ReBack.core.data;
 
+import ReBack.core.service.CategoryService;
 import lombok.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -16,14 +18,17 @@ public class Design {
             sequenceName = "design_seq",
             initialValue = 1, allocationSize = 1)
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "design_seq")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "design_seq_generator")
     private Long designCode;
 
     @Column(length=50, nullable = false)
     private String designName;
 
     @Column(length=1, nullable = false)
-    private int designState;
+    private boolean designState;
+
+    @Column(length=500, nullable = false, name="design_explanation")
+    private String designEx;
 
     @Column(name="design_register_date", nullable = false)
     private LocalDateTime designDate;
@@ -41,4 +46,15 @@ public class Design {
     @ManyToOne
     @JoinColumn(name="material_code")
     private Material material;
+
+
+    public Design(String designName, String designEx, Category findCategory, String fileName, LocalDateTime localDateTime, boolean designState, Material findMaterial) {
+        this.designName = designName;
+        this.designEx = designEx;
+        this.category = findCategory;
+        this.designImagePath = fileName;
+        this.designDate = localDateTime;
+        this.designState = designState;
+        this.material = findMaterial;
+    }
 }

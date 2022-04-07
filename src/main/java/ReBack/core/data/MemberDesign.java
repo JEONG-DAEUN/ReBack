@@ -41,4 +41,12 @@ public class MemberDesign {
     @ManyToOne
     @JoinColumn(name="member_code")
     private Member member;
+
+    @ManyToOne
+    @JoinColumn(name="category_code")
+    private Category category;
+
+    @ManyToOne
+    @JoinColumn(name="material_code")
+    private Material material;
 }

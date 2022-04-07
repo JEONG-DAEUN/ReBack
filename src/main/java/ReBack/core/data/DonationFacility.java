@@ -35,5 +35,6 @@ public class DonationFacility {
 
     @ManyToOne
     @JoinColumn(name="financial_support_code")
+    @Enumerated(EnumType.STRING)
     private FinancialSupport financialSupport;
 }

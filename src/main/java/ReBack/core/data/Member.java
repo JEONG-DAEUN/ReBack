@@ -43,18 +43,22 @@ public class Member {
     @Column(length=10)
     private int memberPoint;
 
-    @Column(length=20)
+    @Column
+    @Enumerated(EnumType.STRING)
     private MemberHowJoin memberHowJoin;
 
-    @Column(length=30)
+    @Column
+    @Enumerated(EnumType.STRING)
     private MemberWithdrawal memberWithdrawal;
 
-    @Column(length=10, nullable = false)
+    @Column(length=10)
     private int memberBusinessNumber;
 
-    @Column(length=20, nullable = false)
-    private  MemberType memberType;
+    @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
+    private MemberType memberType;
 
     @Column(nullable = false)
     private LocalDateTime memberJoinDate;
+
 }
