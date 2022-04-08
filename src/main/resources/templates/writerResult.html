@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>강사정보</title>
+</head>
+<body>
+<div th:each="i:${info}">
+    <div th:text="${i.member.memberName}"></div>
+    <div th:text="${i.trainingTopic}"></div>
+    <div th:text="${i.availableDay}"></div>
+    <div th:text="${i.writerLecturePlace}"></div>
+</div>
+<div th:each="l:${lecture}">
+    <p th:text="'강의명: '+${l.lectureName}"></p>
+    <p th:text="'날짜: '+${l.lectureDate}"></p>
+    <p th:text="'장소: '+${l.lecturePlace}"></p>
+    <p th:text="'신청인원: '+${l.applicationNumber}+' / '+${l.lecturePersonnel}"></p>
+    <p th:if="${l.lectureAvailability}==1">신청가능</p>
+</div>
+</body>
+</html>
