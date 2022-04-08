@@ -1,0 +1,28 @@
+Index: src/main/java/ReBack/core/repository/MemberRepository.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package ReBack.core.repository;\r\n\r\nimport ReBack.core.data.Member;\r\nimport org.springframework.data.jpa.repository.JpaRepository;\r\nimport org.springframework.stereotype.Repository;\r\n\r\n@Repository\r\npublic interface MemberRepository extends JpaRepository<Member, String> {\r\n    boolean existsByMemberId(String memberId);\r\n    boolean existsByEmail(String email);\r\n\r\n}\r\n\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/ReBack/core/repository/MemberRepository.java b/src/main/java/ReBack/core/repository/MemberRepository.java
+--- a/src/main/java/ReBack/core/repository/MemberRepository.java	(revision fe401e424a92aeef7d9ce1f3921b8a0020130263)
++++ b/src/main/java/ReBack/core/repository/MemberRepository.java	(date 1649310471755)
+@@ -2,12 +2,10 @@
+ 
+ import ReBack.core.data.Member;
+ import org.springframework.data.jpa.repository.JpaRepository;
+-import org.springframework.stereotype.Repository;
+ 
+-@Repository
+-public interface MemberRepository extends JpaRepository<Member, String> {
++import java.util.Optional;
++
++public interface MemberRepository extends JpaRepository<Member, Long> {
+     boolean existsByMemberId(String memberId);
+-    boolean existsByEmail(String email);
+-
+-}
+ 
++}
+\ No newline at end of file
