@@ -8,6 +8,7 @@ import java.time.LocalDateTime;
 @Entity
 @ToString
 @Getter
+@Setter
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
@@ -60,5 +61,6 @@ public class Member {
 
     @Column(nullable = false)
     private LocalDateTime memberJoinDate;
+
 
 }

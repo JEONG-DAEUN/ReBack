@@ -2,6 +2,7 @@ package ReBack.core.service;
 
 import ReBack.core.data.Design;
 import ReBack.core.dto.DesignDTO;
+import org.springframework.stereotype.Service;
 
 public interface DesignService {
     String register(DesignDTO dto);
