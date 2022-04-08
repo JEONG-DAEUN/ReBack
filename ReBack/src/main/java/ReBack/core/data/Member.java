@@ -2,16 +2,18 @@ package ReBack.core.data;
 
 import lombok.*;
 import javax.persistence.*;
-import javax.transaction.Transactional;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Entity
 @ToString
+@Getter
+@Setter
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Transactional
 public class Member {
     @SequenceGenerator(name = "member_seq_generator",
             sequenceName = "member_seq",
@@ -19,7 +21,6 @@ public class Member {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "member_seq_generator")
     private Long memberCode;
-
 
     @Column(length=30, nullable = false)
     private String memberId;
@@ -60,115 +61,9 @@ public class Member {
     @Column(nullable = false)
     private LocalDateTime memberJoinDate;
 
-    public Long getMemberCode() {
-        return memberCode;
-    }
 
-    public void setMemberCode(Long memberCode) {
-        this.memberCode = memberCode;
-    }
 
-    public String getMemberId() {
-        return memberId;
-    }
-
-    public void setMemberId(String memberId) {
-        this.memberId = memberId;
-    }
-
-    public String getMemberName() {
-        return memberName;
-    }
-
-    public void setMemberName(String memberName) {
-        this.memberName = memberName;
-    }
-
-    public String getMemberPassword() {
-        return memberPassword;
-    }
-
-    public void setMemberPassword(String memberPassword) {
-        this.memberPassword = memberPassword;
-    }
-
-    public String getMemberEmail() {
-        return memberEmail;
-    }
-
-    public void setMemberEmail(String memberEmail) {
-        this.memberEmail = memberEmail;
-    }
-
-    public String getMemberPhoneNumber() {
-        return memberPhoneNumber;
-    }
-
-    public void setMemberPhoneNumber(String memberPhoneNumber) {
-        this.memberPhoneNumber = memberPhoneNumber;
-    }
-
-    public int getMemberPostalCode() {
-        return memberPostalCode;
-    }
-
-    public void setMemberPostalCode(int memberPostalCode) {
-        this.memberPostalCode = memberPostalCode;
-    }
-
-    public String getMemberAddress() {
-        return memberAddress;
-    }
-
-    public void setMemberAddress(String memberAddress) {
-        this.memberAddress = memberAddress;
-    }
-
-    public int getMemberPoint() {
-        return memberPoint;
-    }
-
-    public void setMemberPoint(int memberPoint) {
-        this.memberPoint = memberPoint;
-    }
-
-    public MemberHowJoin getMemberHowJoin() {
-        return memberHowJoin;
-    }
-
-    public void setMemberHowJoin(MemberHowJoin memberHowJoin) {
-        this.memberHowJoin = memberHowJoin;
-    }
-
-    public MemberWithdrawal getMemberWithdrawal() {
-        return memberWithdrawal;
-    }
-
-    public void setMemberWithdrawal(MemberWithdrawal memberWithdrawal) {
-        this.memberWithdrawal = memberWithdrawal;
-    }
-
-    public int getMemberBusinessNumber() {
-        return memberBusinessNumber;
-    }
-
-    public void setMemberBusinessNumber(int memberBusinessNumber) {
-        this.memberBusinessNumber = memberBusinessNumber;
-    }
-
-    public MemberType getMemberType() {
-        return memberType;
-    }
-
-    public void setMemberType(MemberType memberType) {
-        this.memberType = memberType;
-    }
-
-    public LocalDateTime getMemberJoinDate() {
-        return memberJoinDate;
-    }
-
-    public void setMemberJoinDate(LocalDateTime memberJoinDate) {
-        this.memberJoinDate = memberJoinDate;
-    }
+//    @OneToMany(fetch=FetchType.EAGER, cascade = CascadeType.ALL) // (1)
+//    @JoinColumn(name="member_code")
+//    private List<Product> products = new ArrayList<>();
 }
