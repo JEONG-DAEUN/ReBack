@@ -41,3 +41,6 @@ dependencies {
 tasks.named('test') {
 	useJUnitPlatform()
 }
+dependencies {
+	implementation files('libs/barobill-api-sdk.jar')
+}
