@@ -36,11 +36,9 @@ dependencies {
 	implementation 'com.oracle.database.security:osdt_cert'
 	implementation 'com.oracle.database.security:oraclepki'
 	implementation 'com.oracle.database.security:osdt_core'
+	implementation files('libs/barobill-api-sdk.jar')
 }
 
 tasks.named('test') {
 	useJUnitPlatform()
-}
-dependencies {
-	implementation files('libs/barobill-api-sdk.jar')
 }
