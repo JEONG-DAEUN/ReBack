@@ -37,10 +37,11 @@ public class ProductApiController {
     @PutMapping("/update")
     public void productUpdate(@RequestBody Product product) {
         System.out.println("수정api");
+        System.out.println(product.getProductFilePath() + " 사진경로") ;
         Optional<Product> searchProduct = productRepository.findById(product.getProductCode());
 
         if (searchProduct.isPresent()) {
-//            product.setProductFilePath(searchProduct.get().getProductFilePath());
+            product.setProductFilePath(searchProduct.get().getProductFilePath());
             product.setProductFileName(searchProduct.get().getProductFileName());
         }
         productRepository.save(product);

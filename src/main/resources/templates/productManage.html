@@ -42,7 +42,7 @@
             <input type="text" id="productName" th:value="${productName}">
         </th>
         <th>
-            <textarea type="text" id="productInfo" th:value="${productInfo}"></textarea>
+            <textarea type="text" id="productInfo" th:value="${productInfo}" th:placeholder="${productInfo}"></textarea>
         </th>
         <th>
             <input type="text" id="productPrice" th:value="${productPrice}">
@@ -74,10 +74,12 @@
             const productInfo = $('#productInfo').val();
             const productPrice = $('#productPrice').val();
             const productStock = $('#productStock').val();
+            const productFilePath = $('#productFilePath').val();
             const materialName = $('#categoryCode option:selected').text();
             const categoryName = $('#categoryCode option:selected').text();
 
             const path = '/api/product/update';
+            alert(productFilePath);
 
             const json = JSON.stringify({
                 productCode,
@@ -92,7 +94,8 @@
                 productName,
                 productInfo,
                 productPrice,
-                productStock
+                productStock,
+                productFilePath
 
             });
 
@@ -106,7 +109,7 @@
                 alert('상품이 수정되었습니다.');
                 window.location.href = '/product/manager';
             }).fail( (error)=> {
-                alert((error));
+                alert(error);
             })
 
         }),

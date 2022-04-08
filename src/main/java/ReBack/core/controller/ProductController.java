@@ -82,7 +82,9 @@ public class ProductController {
 
     @GetMapping("/product/manage") //상품 관리 페이지 [수정 및 삭제]
     public String productManage(Model model, @RequestParam(required = false) Long id) {
-                System.out.println("받은id = "+id);
+
+
+        System.out.println("받은id = "+id);
         Product product = productRepository.findById(id).orElse(null);
         model.addAttribute("categoryCode", product.getCategoryCode());
         model.addAttribute("productName", product.getProductName());
