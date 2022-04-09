@@ -29,3 +29,11 @@ logging: # 로거를 통해 로그 출력
 
 server:
   port: 8086
+
+pdfdir: D:/pdfReportRepo/
+reportFileName: Employee-Report
+reportFileNameDateFormat: dd_MMMM_yyyy
+localDateFormat: "dd MMMM yyyy HH:mm:ss"
+currencySymbol: $
+table_noOfColumns: 4
+table.columnNames: financialSupportCode, financialAmount, financialType, memberCode
